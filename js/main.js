@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const menu = item.querySelector('.mega-menu');
     if (!menu) return;
     let closeTimer = null;
-    const HIDE_DELAY = 200; // ms — grace period to reach the menu
+    const HIDE_DELAY = 100; // ms — grace period to reach the menu
 
     const open = () => {
       if (closeTimer) { clearTimeout(closeTimer); closeTimer = null; }

@@ -506,6 +506,7 @@ input, textarea, select { font-family: inherit; }
   padding: 0 var(--container-px);
   height: 72px;
   gap: 2rem;
+  position: relative; /* anchor for .mega-menu (prevents viewport clipping) */
 }
 
 .nav-menu {
@@ -516,6 +517,8 @@ input, textarea, select { font-family: inherit; }
 }
 
 .nav-item { position: relative; }
+/* has-mega items delegate positioning to .nav-container so the mega menu can center in the viewport */
+.nav-item.has-mega { position: static; }
 
 .nav-link {
   display: flex;
@@ -607,6 +610,7 @@ input, textarea, select { font-family: inherit; }
   border-radius: 0 0 var(--radius-lg) var(--radius-lg);
   box-shadow: 0 24px 64px rgba(0,0,0,0.8);
   min-width: 760px;
+  max-width: calc(100vw - 2rem); /* viewport-safety on narrow screens */
   opacity: 0;
   visibility: hidden;
   transition: opacity var(--transition-base), transform var(--transition-base), visibility var(--transition-base);

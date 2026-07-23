@@ -57,6 +57,38 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /* ==========================================
+     2b. MEGA MENU — Hover Intent
+     ==========================================
+     The mega menu is centered on the nav-container while the trigger nav item
+     (e.g. "제품") sits on the left. Moving the cursor diagonally from the
+     nav item to the centered menu crosses empty space, which would end :hover
+     and hide the menu mid-motion. We add a grace period on mouseleave and
+     also open on cursor enter to the menu itself. */
+  document.querySelectorAll('.nav-item.has-mega').forEach(item => {
+    const menu = item.querySelector('.mega-menu');
+    if (!menu) return;
+    let closeTimer = null;
+    const HIDE_DELAY = 300; // ms — grace period to reach the menu
+
+    const open = () => {
+      if (closeTimer) { clearTimeout(closeTimer); closeTimer = null; }
+      item.classList.add('mega-open');
+    };
+    const scheduleClose = () => {
+      if (closeTimer) clearTimeout(closeTimer);
+      closeTimer = setTimeout(() => {
+        item.classList.remove('mega-open');
+        closeTimer = null;
+      }, HIDE_DELAY);
+    };
+
+    item.addEventListener('mouseenter', open);
+    item.addEventListener('mouseleave', scheduleClose);
+    menu.addEventListener('mouseenter', open);
+    menu.addEventListener('mouseleave', scheduleClose);
+  });
+
+  /* ==========================================
      3. SMOOTH SCROLL for anchor links
      ========================================== */
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {

@@ -545,7 +545,8 @@ input, textarea, select { font-family: inherit; }
   opacity: 0.75;
   transition: transform var(--transition-fast), opacity var(--transition-fast);
 }
-.nav-item:hover .nav-arrow { transform: rotate(180deg); opacity: 1; }
+.nav-item:hover .nav-arrow,
+.nav-item.mega-open .nav-arrow { transform: rotate(180deg); opacity: 1; }
 
 .nav-actions {
   display: flex;
@@ -637,7 +638,8 @@ input, textarea, select { font-family: inherit; }
 
 .mega-menu-sm { min-width: 480px; }
 
-.nav-item:hover .mega-menu {
+.nav-item:hover .mega-menu,
+.nav-item.mega-open .mega-menu {
   opacity: 1;
   visibility: visible;
   transform: translateX(-50%) translateY(0);
